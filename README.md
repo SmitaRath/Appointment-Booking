@@ -11,7 +11,9 @@ http://localhost:4000/
 Should provide the below details
 {
 "id" : "xyz@abc.xyz", // should be in email format
+
 "date": "2021:11:11", // should be in YYYY:MM:DD format
+
 "time":"1:00" //should be in hh:mm format(24 hr format)
 }
 
