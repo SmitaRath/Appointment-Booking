@@ -4,15 +4,18 @@ const redis= require("redis");
 const client = redis.createClient();
 const moment = require('moment');
 
+//method to validate the id format
 function validateEmailId(argument){
      if(!(argument.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)))
      throw `Id should be in the format xyz@abc.xyz`;
  }
 
 
+// post end point to post an appointment
 router.post("/", async(req,res)=>{
     let data=req.body;
 
+    // if one of the parameter is missing, throwing error to the user
     if(!(data.id) || !(data.date) || !(data.time)){
         res.status(400).json({Error:"Please provide id, date and time to book an appointment"})
         return;
@@ -20,6 +23,7 @@ router.post("/", async(req,res)=>{
 
     const id = data.id;
 
+   //validating id
     try{
         validateEmailId(id);
     }
@@ -32,8 +36,10 @@ router.post("/", async(req,res)=>{
     const date = data.date.split(":");
     const time=data.time.split(":");
 
+    // generating date using moment from the passed date and time
     const appointDate = moment([date[0],date[1]-1,date[2],time[0],time[1]])
 
+    // if date is not valid sending error to customer
     try
     {
         if(!(appointDate._isValid)){
@@ -46,6 +52,7 @@ router.post("/", async(req,res)=>{
         return;
     }
     
+    // if date is not starting at hour or half hour sending error to user
     try{
         if(parseInt(time[1],10)%10!=0 || parseInt(time[1],10)%30!=0){
             res.status(400).json({Error: "All appointments must start and end on the hour or half hour"});
@@ -58,6 +65,8 @@ router.post("/", async(req,res)=>{
     }
 
     const now = moment();
+
+    // if date is past date sending error to user
     if(appointDate.isBefore(now))
     {
         res.status(400).json({error:"Appointment cannot be booked for past date"});
@@ -65,6 +74,7 @@ router.post("/", async(req,res)=>{
     }
        
 
+// checking for id already present in the cache if present then checking for same day appointment
   try
     {
     client.lrange(id,0,-1, function(err, result){
@@ -95,8 +105,10 @@ catch(e){
 
 })
 
+// method to get all the appoinntments for the user
 router.get("/:id", async(req,res)=>{
     let id = req.params.id;
+    // if id is not in valid format sending error to user
     try{
         validateEmailId(id);
     }
@@ -106,6 +118,7 @@ router.get("/:id", async(req,res)=>{
         return;
     }
 
+    // getting all the appointments of the user
     try
     {
         client.lrange(id,0,-1, function(err, result){
