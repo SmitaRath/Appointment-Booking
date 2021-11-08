@@ -46,6 +46,6 @@ npm start <br/>
 ### The server will start running at localhost:4000 <br/>
 Start booking appointments for the user.
 
-
+### Once application is done booking for the day, please stop the redis server using command: brew services stop redis
 
 
