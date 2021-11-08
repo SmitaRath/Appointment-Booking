@@ -8,7 +8,7 @@ It accepts two end points
 http://localhost:4000/ 
 
 -->
-Request body should be in the below format
+Request body should be in the below format.
 In the postman, under Body tag select raw and JSON format and please remove the comments from the request before running the application
 
 ![image](https://user-images.githubusercontent.com/72769273/140690001-61784a9f-8183-4a66-847b-dcfaff1afb55.png)
@@ -28,14 +28,18 @@ https://phoenixnap.com/kb/install-redis-on-mac
 ### If Node.js is not installed in the system, please install it using below link
 https://nodejs.org/en/download/
 
+### If postman is not installed, please install it using below link
+https://www.postman.com/downloads/
+
 Once redis and Node.js are installed successfully
 Open terminal in the project folder
-• cd server
-• npm install
-• npm start
+
+cd server
+npm install
+npm start
 
 The server will start running at localhost:4000
-And start booking appointments for the user.
+Start booking appointments for the user.
 
 
 
