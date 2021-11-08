@@ -21,7 +21,7 @@ router.post("/", async(req,res)=>{
         return;
     }
 
-    const id = data.id;
+    const id = data.id.toLowerCase();
 
    //validating id
     try{
@@ -107,7 +107,7 @@ catch(e){
 
 // method to get all the appoinntments for the user
 router.get("/:id", async(req,res)=>{
-    let id = req.params.id;
+    let id = req.params.id.toLowerCase();
     // if id is not in valid format sending error to user
     try{
         validateEmailId(id);
