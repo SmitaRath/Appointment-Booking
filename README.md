@@ -8,14 +8,9 @@ It accepts two end points
 http://localhost:4000/ 
 
 -->
-Should provide the below details
-{
-"id" : "xyz@abc.xyz", // should be in email format
-
-"date": "2021:11:11", // should be in YYYY:MM:DD format
-
-"time":"1:00" //should be in hh:mm format(24 hr format)
-}
+Request body should be in the below format
+In the postman, under Body tag select raw and JSON format and please remove the comments from the request before running the application
+![image](https://user-images.githubusercontent.com/72769273/140690001-61784a9f-8183-4a66-847b-dcfaff1afb55.png)
 
 This end point accepts numbers in both format 9 and 09 for hours, minutes, day and month
 
