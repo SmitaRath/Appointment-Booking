@@ -34,11 +34,11 @@ https://www.postman.com/downloads/
 Once redis and Node.js are installed successfully
 Open terminal in the project folder
 
-cd server
-npm install
-npm start
+cd server <br/>
+#npm install <br/>
+npm start <br/>
 
-The server will start running at localhost:4000
+The server will start running at localhost:4000 <br/>
 Start booking appointments for the user.
 
 
